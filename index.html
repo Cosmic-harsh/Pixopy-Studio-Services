@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixopy Studio - Service Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0984e3;
+            --dark-blue: #0869b9;
+            --light-blue: #74b9ff;
+            --charcoal: #2d3436;
+            --light-charcoal: #636e72;
+            --off-white: #f5f6fa;
+            --orange: #e67e22;
+            --light-orange: #f39c12;
+            --accent-pink: #fd79a8;
+            --accent-purple: #a29bfe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--charcoal);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .pricing-container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--orange), var(--light-orange));
+            border-radius: 10px;
+            margin-right: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+            padding: 40px;
+        }
+        
+        .service-card {
+            background: var(--off-white);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .service-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .service-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--light-orange);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .service-features li i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+        
+        .service-desc {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+            border-left: 4px solid var(--accent-pink);
+        }
+        
+        .addons {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .addons-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--charcoal);
+        }
+        
+        .addon-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .addon-text {
+            font-weight: 600;
+        }
+        
+        .addon-price {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .contact-info {
+            margin-top: 10px;
+        }
+        
+        .contact-info a {
+            color: var(--light-blue);
+            text-decoration: none;
+        }
+        
+        .share-section {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .share-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .share-btn i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .share-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .share-btn {
+                margin: 5px 0;
+            }
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--primary-blue) 100%);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .decoration-1 {
+            top: -50px;
+            right: -50px;
+        }
+        
+        .decoration-2 {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <div class="header">
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+            <div class="logo">
+                <div class="logo-icon">P</div>
+                <div class="logo-text">PIXOPY STUDIO</div>
+            </div>
+            <div class="tagline">Premium Digital Marketing Services</div>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-title">1. Reel / Short Video Creation</div>
+                    <div class="service-price">₹1,500 – ₹2,500</div>
+                </div>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Script/Idea development</li>
+                        <li><i class="fas fa-check-circle"></i> Editing + Effects + Transitions + Music</li>
+                        <li><i class="fas fa-check-circle"></i> Up to 60 seconds</li>
+                        <li><i class="fas fa-check-circle"></i> One revision included</li>
+                    </ul>
+                    <div class="service-desc">
+                        Perfect for brands wanting trendy, high-impact content without a full package.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-title">2. Video Editing</div>
+                    <div class="service-price">₹1,200 – ₹2,000</div>
+                </div>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Clean editing, color grading, subtitles</li>
+                        <li><i class="fas fa-check-circle"></i> Up to 1-2 minutes length</li>
+                        <li><i class="fas fa-check-circle"></i> Social media optimized (vertical/horizontal)</li>
+                        <li><i class="fas fa-check-circle"></i> One revision included</li>
+                    </ul>
+                    <div class="service-desc">
+                        For influencers, small businesses, or YouTubers who just need polished edits.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-title">3. Graphic Design</div>
+                    <div class="service-price">₹500 – ₹800</div>
+                </div>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Custom design in Pixopy branding style</li>
+                        <li><i class="fas fa-check-circle"></i> Includes caption suggestion + hashtags</li>
+                        <li><i class="fas fa-check-circle"></i> Delivered in required format</li>
+                        <li><i class="fas fa-check-circle"></i> Two revisions included</li>
+                    </ul>
+                    <div class="service-desc">
+                        Ideal for one-time promos, sale announcements, or product highlights.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-title">4. Poster / Flyer Design</div>
+                    <div class="service-price">₹800 – ₹1,000</div>
+                </div>
+                <div class="service-content">
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> High-resolution design (custom size)</li>
+                        <li><i class="fas fa-check-circle"></i> Print-ready + digital formats</li>
+                        <li><i class="fas fa-check-circle"></i> 2 layout concepts to choose from</li>
+                        <li><i class="fas fa-check-circle"></i> Five revisions included</li>
+                    </ul>
+                    <div class="service-desc">
+                        For events, campaigns, or professional offline marketing.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="addons">
+            <div class="addons-title">⚡ Add-On Services</div>
+            
+            <div class="addon-item">
+                <div class="addon-text">Extra Revision</div>
+                <div class="addon-price">₹100–₹300</div>
+            </div>
+            
+            <div class="addon-item">
+                <div class="addon-text">Express Delivery (24 hrs)</div>
+                <div class="addon-price">+30%</div>
+            </div>
+        </div>
+        
+        <div class="share-section">
+            <h3>Share Our Services</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn" onclick="copyLink()">
+                    <i class="fas fa-link"></i> Copy Link
+                </a>
+                <a href="#" class="share-btn" onclick="shareOnWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" class="share-btn" onclick="shareOnLinkedIn()">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Get in touch with us to discuss your project requirements!</p>
+            <div class="contact-info">
+                Email: <a>pixopystudio@gmail.com</a> | 
+                Instagram: <a>@pixopystudio</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animation to cards when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card');
+            
+            cards.forEach((card, index) => {
+                // Add delay based on index for staggered animation
+                card.style.transitionDelay = `${index * 0.1}s`;
+                
+                // Add hover effect
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 18px 35px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.08)';
+                });
+            });
+        });
+        
+        // Share functions
+        function copyLink() {
+            const tempInput = document.createElement('input');
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Link copied to clipboard!');
+        }
+        
+        function shareOnWhatsApp() {
+            const text = 'Check out Pixopy Studio services and pricing:';
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+        }
+        
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        }
+    </script>
+</body>
+</html>
